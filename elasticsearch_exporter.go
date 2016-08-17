@@ -26,258 +26,258 @@ type VecInfo struct {
 
 var (
 	counterMetrics = map[string]*VecInfo{
-		"indices_fielddata_evictions": &VecInfo{
+		"indices_fielddata_evictions": {
 			help:   "Evictions from field data",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_filter_cache_evictions": &VecInfo{
+		"indices_filter_cache_evictions": {
 			help:   "Evictions from filter cache",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_query_cache_evictions": &VecInfo{
+		"indices_query_cache_evictions": {
 			help:   "Evictions from query cache",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_request_cache_evictions": &VecInfo{
+		"indices_request_cache_evictions": {
 			help:   "Evictions from request cache",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_flush_total": &VecInfo{
+		"indices_flush_total": {
 			help:   "Total flushes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_flush_time_ms_total": &VecInfo{
+		"indices_flush_time_ms_total": {
 			help:   "Cumulative flush time in milliseconds",
 			labels: []string{"cluster", "node"},
 		},
-		"transport_rx_packets_total": &VecInfo{
+		"transport_rx_packets_total": {
 			help:   "Count of packets received",
 			labels: []string{"cluster", "node"},
 		},
-		"transport_rx_size_bytes_total": &VecInfo{
+		"transport_rx_size_bytes_total": {
 			help:   "Total number of bytes received",
 			labels: []string{"cluster", "node"},
 		},
-		"transport_tx_packets_total": &VecInfo{
+		"transport_tx_packets_total": {
 			help:   "Count of packets sent",
 			labels: []string{"cluster", "node"},
 		},
-		"transport_tx_size_bytes_total": &VecInfo{
+		"transport_tx_size_bytes_total": {
 			help:   "Total number of bytes sent",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_store_throttle_time_ms_total": &VecInfo{
+		"indices_store_throttle_time_ms_total": {
 			help:   "Throttle time for index store in milliseconds",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_indexing_index_total": &VecInfo{
+		"indices_indexing_index_total": {
 			help:   "Total index calls",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_indexing_index_time_ms_total": &VecInfo{
+		"indices_indexing_index_time_ms_total": {
 			help:   "Cumulative index time in milliseconds",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_merges_total": &VecInfo{
+		"indices_merges_total": {
 			help:   "Total merges",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_merges_total_docs_total": &VecInfo{
+		"indices_merges_docs_total": {
 			help:   "Cumulative docs merged",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_merges_total_size_bytes_total": &VecInfo{
+		"indices_merges_total_size_bytes_total": {
 			help:   "Total merge size in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_merges_total_time_ms_total": &VecInfo{
+		"indices_merges_total_time_ms_total": {
 			help:   "Total time spent merging in milliseconds",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_refresh_total": &VecInfo{
+		"indices_refresh_total": {
 			help:   "Total refreshes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_refresh_total_time_ms_total": &VecInfo{
+		"indices_refresh_total_time_ms_total": {
 			help:   "Total time spent refreshing",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_query_total": &VecInfo{
+		"indices_search_query_total": {
 			help:   "Total number of queries",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_query_time_ms_total": &VecInfo{
+		"indices_search_query_time_ms_total": {
 			help:   "Total query time in milliseconds",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_fetch_total": &VecInfo{
+		"indices_search_fetch_total": {
 			help:   "Total number of queries",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_fetch_time_ms_total": &VecInfo{
+		"indices_search_fetch_time_ms_total": {
 			help:   "Total query time in milliseconds",
 			labels: []string{"cluster", "node"},
 		},
-		"jvm_gc_collection_seconds_count": &VecInfo{
+		"jvm_gc_collection_seconds_count": {
 			help:   "Count of JVM GC runs",
 			labels: []string{"cluster", "node", "gc"},
 		},
-		"jvm_gc_collection_seconds_sum": &VecInfo{
+		"jvm_gc_collection_seconds_sum": {
 			help:   "GC run time in seconds",
 			labels: []string{"cluster", "node", "gc"},
 		},
-		"process_cpu_time_seconds_sum": &VecInfo{
+		"process_cpu_time_seconds_sum": {
 			help:   "Process CPU time in seconds",
 			labels: []string{"cluster", "node", "type"},
 		},
-		"thread_pool_completed_count": &VecInfo{
+		"thread_pool_completed_count": {
 			help:   "Thread Pool operations completed",
 			labels: []string{"cluster", "node", "type"},
 		},
-		"thread_pool_rejected_count": &VecInfo{
+		"thread_pool_rejected_count": {
 			help:   "Thread Pool operations rejected",
 			labels: []string{"cluster", "node", "type"},
 		},
 	}
 
 	gaugeMetrics = map[string]*VecInfo{
-		"indices_fielddata_memory_size_bytes": &VecInfo{
+		"indices_fielddata_memory_size_bytes": {
 			help:   "Field data cache memory usage in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_filter_cache_memory_size_bytes": &VecInfo{
+		"indices_filter_cache_memory_size_bytes": {
 			help:   "Filter cache memory usage in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_query_cache_memory_size_bytes": &VecInfo{
+		"indices_query_cache_memory_size_bytes": {
 			help:   "Query cache memory usage in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_request_cache_memory_size_bytes": &VecInfo{
+		"indices_request_cache_memory_size_bytes": {
 			help:   "Request cache memory usage in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_docs": &VecInfo{
+		"indices_docs": {
 			help:   "Count of documents on this node",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_docs_deleted": &VecInfo{
+		"indices_docs_deleted": {
 			help:   "Count of deleted documents on this node",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_store_size_bytes": &VecInfo{
+		"indices_store_size_bytes": {
 			help:   "Current size of stored index data in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_segments_memory_bytes": &VecInfo{
+		"indices_segments_memory_bytes": {
 			help:   "Current memory size of segments in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_segments_count": &VecInfo{
+		"indices_segments_count": {
 			help:   "Count of index segments on this node",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_fetch_current": &VecInfo{
+		"indices_search_fetch_current": {
 			help:   "Number of query fetches currently running",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_open_contexts": &VecInfo{
+		"indices_search_open_contexts": {
 			help:   "Number of active searches",
 			labels: []string{"cluster", "node"},
 		},
-		"indices_search_query_current": &VecInfo{
+		"indices_search_query_current": {
 			help:   "Number of currently active queries",
 			labels: []string{"cluster", "node"},
 		},
-		"process_cpu_percent": &VecInfo{
+		"process_cpu_percent": {
 			help:   "Percent CPU used by process",
 			labels: []string{"cluster", "node"},
 		},
-		"process_mem_resident_size_bytes": &VecInfo{
+		"process_mem_resident_size_bytes": {
 			help:   "Resident memory in use by process in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"process_mem_share_size_bytes": &VecInfo{
+		"process_mem_share_size_bytes": {
 			help:   "Shared memory in use by process in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"process_mem_virtual_size_bytes": &VecInfo{
+		"process_mem_virtual_size_bytes": {
 			help:   "Total virtual memory used in bytes",
 			labels: []string{"cluster", "node"},
 		},
-		"process_open_files_count": &VecInfo{
+		"process_open_files_count": {
 			help:   "Open file descriptors",
 			labels: []string{"cluster", "node"},
 		},
-		"process_max_files_count": &VecInfo{
+		"process_max_files_count": {
 			help:   "Max file descriptors for process",
 			labels: []string{"cluster", "node"},
 		},
-		"breakers_estimated_size_bytes": &VecInfo{
+		"breakers_estimated_size_bytes": {
 			help:   "Estimated size in bytes of breaker",
 			labels: []string{"cluster", "node", "breaker"},
 		},
-		"breakers_limit_size_bytes": &VecInfo{
+		"breakers_limit_size_bytes": {
 			help:   "Limit size in bytes for breaker",
 			labels: []string{"cluster", "node", "breaker"},
 		},
-		"jvm_memory_committed_bytes": &VecInfo{
+		"jvm_memory_committed_bytes": {
 			help:   "JVM memory currently committed by area",
 			labels: []string{"cluster", "node", "area"},
 		},
-		"jvm_memory_used_bytes": &VecInfo{
+		"jvm_memory_used_bytes": {
 			help:   "JVM memory currently used by area",
 			labels: []string{"cluster", "node", "area"},
 		},
-		"jvm_memory_max_bytes": &VecInfo{
+		"jvm_memory_max_bytes": {
 			help:   "JVM memory max",
 			labels: []string{"cluster", "node", "area"},
 		},
-		"thread_pool_active_count": &VecInfo{
+		"thread_pool_active_count": {
 			help:   "Thread Pool threads active",
 			labels: []string{"cluster", "node", "type"},
 		},
-		"thread_pool_largest_count": &VecInfo{
+		"thread_pool_largest_count": {
 			help:   "Thread Pool largest threads count",
 			labels: []string{"cluster", "node", "type"},
 		},
-		"thread_pool_queue_count": &VecInfo{
+		"thread_pool_queue_count": {
 			help:   "Thread Pool operations queued",
 			labels: []string{"cluster", "node", "type"},
 		},
-		"thread_pool_threads_count": &VecInfo{
+		"thread_pool_threads_count": {
 			help:   "Thread Pool current threads count",
 			labels: []string{"cluster", "node", "type"},
 		},
-		"cluster_nodes_total": &VecInfo{
+		"cluster_nodes_total": {
 			help:   "Total number of nodes",
 			labels: []string{"cluster"},
 		},
-		"cluster_nodes_data": &VecInfo{
+		"cluster_nodes_data": {
 			help:   "Number of data nodes",
 			labels: []string{"cluster"},
 		},
-		"index_status": &VecInfo{
+		"index_status": {
 			help:   "Index status (0=green, 1=yellow, 2=red)",
 			labels: []string{"cluster", "index"},
 		},
-		"index_shards_active_primary": &VecInfo{
+		"index_shards_active_primary": {
 			help:   "Number of active primary shards",
 			labels: []string{"cluster", "index"},
 		},
-		"index_shards_active": &VecInfo{
+		"index_shards_active": {
 			help:   "Number of active shards",
 			labels: []string{"cluster", "index"},
 		},
-		"index_shards_relocating": &VecInfo{
+		"index_shards_relocating": {
 			help:   "Number of relocating shards",
 			labels: []string{"cluster", "index"},
 		},
-		"index_shards_initializing": &VecInfo{
+		"index_shards_initializing": {
 			help:   "Number of initializing shards",
 			labels: []string{"cluster", "index"},
 		},
-		"index_shards_unassigned": &VecInfo{
+		"index_shards_unassigned": {
 			help:   "Number of unassigned shards",
 			labels: []string{"cluster", "index"},
 		},
@@ -466,9 +466,9 @@ func (e *Exporter) collectNodesStats() {
 		e.gauges["indices_segments_memory_bytes"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Segments.Memory))
 		e.gauges["indices_segments_count"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Segments.Count))
 
-	    e.gauges["indices_search_fetch_current"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchCurrent))
-	    e.gauges["indices_search_query_current"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryCurrent))
-	    e.gauges["indices_search_open_contexts"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.OpenContext))
+		e.gauges["indices_search_fetch_current"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchCurrent))
+		e.gauges["indices_search_query_current"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryCurrent))
+		e.gauges["indices_search_open_contexts"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.OpenContext))
 
 		e.gauges["indices_store_size_bytes"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Store.Size))
 		e.counters["indices_store_throttle_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Store.ThrottleTime))
@@ -482,6 +482,7 @@ func (e *Exporter) collectNodesStats() {
 		e.counters["indices_merges_total_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Merges.TotalTime))
 		e.counters["indices_merges_total_size_bytes_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Merges.TotalSize))
 		e.counters["indices_merges_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Merges.Total))
+		e.counters["indices_merges_docs_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Merges.TotalDocs))
 
 		e.counters["indices_refresh_total_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.TotalTime))
 		e.counters["indices_refresh_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.Total))
