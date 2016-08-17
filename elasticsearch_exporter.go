@@ -102,6 +102,22 @@ var (
 			help:   "Total time spent refreshing",
 			labels: []string{"cluster", "node"},
 		},
+		"indices_search_query_total": &VecInfo{
+			help:   "Total number of queries",
+			labels: []string{"cluster", "node"},
+		},
+		"indices_search_query_time_ms_total": &VecInfo{
+			help:   "Total query time in milliseconds",
+			labels: []string{"cluster", "node"},
+		},
+		"indices_search_fetch_total": &VecInfo{
+			help:   "Total number of queries",
+			labels: []string{"cluster", "node"},
+		},
+		"indices_search_fetch_time_ms_total": &VecInfo{
+			help:   "Total query time in milliseconds",
+			labels: []string{"cluster", "node"},
+		},
 		"jvm_gc_collection_seconds_count": &VecInfo{
 			help:   "Count of JVM GC runs",
 			labels: []string{"cluster", "node", "gc"},
@@ -159,6 +175,18 @@ var (
 		},
 		"indices_segments_count": &VecInfo{
 			help:   "Count of index segments on this node",
+			labels: []string{"cluster", "node"},
+		},
+		"indices_search_fetch_current": &VecInfo{
+			help:   "Number of query fetches currently running",
+			labels: []string{"cluster", "node"},
+		},
+		"indices_search_open_contexts": &VecInfo{
+			help:   "Number of active searches",
+			labels: []string{"cluster", "node"},
+		},
+		"indices_search_query_current": &VecInfo{
+			help:   "Number of currently active queries",
 			labels: []string{"cluster", "node"},
 		},
 		"process_cpu_percent": &VecInfo{
@@ -438,6 +466,10 @@ func (e *Exporter) collectNodesStats() {
 		e.gauges["indices_segments_memory_bytes"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Segments.Memory))
 		e.gauges["indices_segments_count"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Segments.Count))
 
+	    e.gauges["indices_search_fetch_current"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchCurrent))
+	    e.gauges["indices_search_query_current"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryCurrent))
+	    e.gauges["indices_search_open_contexts"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.OpenContext))
+
 		e.gauges["indices_store_size_bytes"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Store.Size))
 		e.counters["indices_store_throttle_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Store.ThrottleTime))
 
@@ -453,6 +485,12 @@ func (e *Exporter) collectNodesStats() {
 
 		e.counters["indices_refresh_total_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.TotalTime))
 		e.counters["indices_refresh_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.Total))
+
+		e.counters["indices_search_query_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTotal))
+		e.counters["indices_search_query_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTime))
+
+		e.counters["indices_search_fetch_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTotal))
+		e.counters["indices_search_fetch_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTime))
 
 		// Transport Stats
 		e.counters["transport_rx_packets_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Transport.RxCount))
