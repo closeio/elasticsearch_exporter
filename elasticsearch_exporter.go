@@ -1,16 +1,14 @@
 package main
 
 import (
-	"flag"
+	"encoding/json"
+	log "github.com/Sirupsen/logrus"
 	"io/ioutil"
-	"log"
 	"net"
 	"net/http"
 	_ "net/http/pprof"
 	"sync"
 	"time"
-
-	"encoding/json"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -588,31 +586,4 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	for _, vec := range e.gauges {
 		vec.Collect(ch)
 	}
-}
-
-func main() {
-	var (
-		listenAddress = flag.String("web.listen-address", ":9108", "Address to listen on for web interface and telemetry.")
-		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
-		esURI         = flag.String("es.uri", "http://localhost:9200", "HTTP API address of an Elasticsearch node.")
-		esTimeout     = flag.Duration("es.timeout", 5*time.Second, "Timeout for trying to get stats from Elasticsearch.")
-		esAllNodes    = flag.Bool("es.all", false, "Export stats for all nodes in the cluster.")
-	)
-	flag.Parse()
-
-	exporter := NewExporter(*esURI, *esTimeout, *esAllNodes)
-	prometheus.MustRegister(exporter)
-
-	log.Println("Starting Server:", *listenAddress)
-	http.Handle(*metricsPath, prometheus.Handler())
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`<html>
-             <head><title>Elasticsearch Exporter</title></head>
-             <body>
-             <h1>Elasticsearch Exporter</h1>
-             <p><a href='` + *metricsPath + `'>Metrics</a></p>
-             </body>
-             </html>`))
-	})
-	log.Fatal(http.ListenAndServe(*listenAddress, nil))
 }
