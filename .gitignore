@@ -1,5 +1,6 @@
 .idea/
 .build/
+.tarballs/
+dependencies-stamp
 elasticsearch_exporter
-*.tar.gz
-*-stamp
+elasticsearch_exporter.exe
