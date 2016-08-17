@@ -38,4 +38,3 @@ we'll attempt to report important values for both.
 * `indices.query_cache` becomes `indices.request_cache`
 * `process.cpu` lost `user` and `sys` time, so we're now reporting `total`
 * Added `process.cpu.max_file_descriptors`
-* 
