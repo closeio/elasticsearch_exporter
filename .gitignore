@@ -1,4 +1,5 @@
-.build
+.idea/
+.build/
 elasticsearch_exporter
 *.tar.gz
 *-stamp
