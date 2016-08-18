@@ -1,6 +1,7 @@
 .idea/
 .build/
 .tarballs/
+.vscode/
 dependencies-stamp
 elasticsearch_exporter
 elasticsearch_exporter.exe
