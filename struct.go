@@ -41,6 +41,7 @@ type NodeStatsNodeResponse struct {
 	Breakers         map[string]NodeStatsBreakersResponse       `json:"breakers"`
 	Transport        NodeStatsTransportResponse                 `json:"transport"`
 	Process          NodeStatsProcessResponse                   `json:"process"`
+	HTTP             NodeStatsHTTPResponse                      `json:"http"`
 }
 
 type NodeStatsBreakersResponse struct {

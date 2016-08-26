@@ -64,6 +64,10 @@ var (
 			help:   "Total number of bytes sent",
 			labels: []string{"cluster", "node"},
 		},
+		"http_open_total": {
+			help:   "Total HTTP connections opened",
+			labels: []string{"cluster", "node"},
+		},
 		"indices_store_throttle_time_ms_total": {
 			help:   "Throttle time for index store in milliseconds",
 			labels: []string{"cluster", "node"},
@@ -209,6 +213,10 @@ var (
 		},
 		"process_max_files_count": {
 			help:   "Max file descriptors for process",
+			labels: []string{"cluster", "node"},
+		},
+		"http_open": {
+			help:   "HTTP connections open",
 			labels: []string{"cluster", "node"},
 		},
 		"breakers_estimated_size_bytes": {
@@ -507,6 +515,10 @@ func (e *Exporter) collectNodesStats() {
 		e.counters["transport_rx_size_bytes_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Transport.RxSize))
 		e.counters["transport_tx_packets_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Transport.TxCount))
 		e.counters["transport_tx_size_bytes_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Transport.TxSize))
+
+		// HTTP Stats
+		e.counters["http_open_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.HTTP.TotalOpen))
+		e.gauges["http_open"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.HTTP.CurrentOpen))
 
 		// Process Stats
 		e.gauges["process_cpu_percent"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Process.CPU.Percent))
