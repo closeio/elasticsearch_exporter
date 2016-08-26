@@ -445,6 +445,12 @@ func (e *Exporter) collectNodesStats() {
 		e.gauges["jvm_memory_committed_bytes"].WithLabelValues(allStats.ClusterName, stats.Host, "non-heap").Set(float64(stats.JVM.Mem.NonHeapCommitted))
 		e.gauges["jvm_memory_used_bytes"].WithLabelValues(allStats.ClusterName, stats.Host, "non-heap").Set(float64(stats.JVM.Mem.NonHeapUsed))
 
+		// JVM Memory Pool stats
+		for pool, pstats := range stats.JVM.Mem.Pools {
+			e.gauges["jvm_memory_used_bytes"].WithLabelValues(allStats.ClusterName, stats.Host, pool).Set(float64(pstats.Used))
+			e.gauges["jvm_memory_max_bytes"].WithLabelValues(allStats.ClusterName, stats.Host, pool).Set(float64(pstats.Max))
+		}
+
 		// Indices Stats
 		e.gauges["indices_fielddata_memory_size_bytes"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.FieldData.MemorySize))
 		e.counters["indices_fielddata_evictions"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.FieldData.Evictions))
