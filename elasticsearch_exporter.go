@@ -219,6 +219,10 @@ var (
 			help:   "Limit size in bytes for breaker",
 			labels: []string{"cluster", "node", "breaker"},
 		},
+		"breakers_tripped": {
+			help:   "Has the breaker been tripped?",
+			labels: []string{"cluster", "node", "breaker"},
+		},
 		"jvm_memory_committed_bytes": {
 			help:   "JVM memory currently committed by area",
 			labels: []string{"cluster", "node", "area"},
@@ -425,6 +429,7 @@ func (e *Exporter) collectNodesStats() {
 		for breaker, bstats := range stats.Breakers {
 			e.gauges["breakers_estimated_size_bytes"].WithLabelValues(allStats.ClusterName, stats.Host, breaker).Set(float64(bstats.EstimatedSize))
 			e.gauges["breakers_limit_size_bytes"].WithLabelValues(allStats.ClusterName, stats.Host, breaker).Set(float64(bstats.LimitSize))
+			e.gauges["breakers_tripped"].WithLabelValues(allStats.ClusterName, stats.Host, breaker).Set(float64(bstats.Tripped))
 		}
 
 		// Thread Pool stats
